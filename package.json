@@ -1,0 +1,60 @@
+{
+  "name": "form-builder",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mdi/js": "^7.0.96",
+    "@mdi/react": "^1.6.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "nanoid": "^4.0.0",
+    "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-click-away-listener": "^2.2.2",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.2",
+    "react-json-view": "^1.21.3",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.8",
+    "recoil": "^0.7.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "BROWSER=none react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "^11.10.2",
+    "customize-cra": "^1.0.0",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-jsconfig": "^1.1.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-sort-destructure-keys": "^1.4.0",
+    "react-app-alias": "^2.2.2",
+    "react-app-rewired": "^2.2.1"
+  }
+}
