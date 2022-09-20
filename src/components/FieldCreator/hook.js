@@ -1,11 +1,16 @@
 import R from 'ramda';
-import { FIELD_DEFAULT_VALUES, TECH_FIELDS } from '@/constants/fields';
+import { FIELD_DEFAULT_VALUES, FORM_FIELDS, TECH_FIELDS } from '@/constants/fields';
 import { editFieldTargetState, fieldsState, isEditingFieldState, sectionsState } from '@/state/atoms';
 import { nanoid } from 'nanoid';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+
+const normalizeField = (field) => ({
+  ...field,
+  [FORM_FIELDS.name]: field[TECH_FIELDS.useCustomName] ? field[TECH_FIELDS.custom_name] : field[FORM_FIELDS.name],
+});
 
 const useFieldCreatorData = () => {
   const [fields, setFields] = useRecoilState(fieldsState);
@@ -49,7 +54,7 @@ const useFieldCreatorData = () => {
       const targetIndex = prev.findIndex((field) => field.id === editTarget);
       const next = [
         ...prev.slice(0, targetIndex),
-        { ...data, id: prev[targetIndex].id },
+        { ...normalizeField(data), id: prev[targetIndex].id },
         ...prev.slice(targetIndex + 1),
       ];
       return next;
