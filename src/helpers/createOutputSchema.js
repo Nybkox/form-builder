@@ -1,3 +1,4 @@
+import R from 'ramda';
 import { FORM_FIELDS, TECH_FIELDS, VALIDATION_FIELDS } from '@/constants/fields';
 import clearValues from '@/utils/clearValues';
 import pick from '@/utils/pick';
@@ -29,16 +30,22 @@ const mapField = (field) => {
   };
 };
 
+const mapIndexed = R.addIndex(R.map);
+const orderDiff = (a, b) => a.order - b.order;
+const addOrder = (item, index) => ({ ...item, order: index * 10 });
+const getFieldNames = (section) => ({ ...section, fields: R.map(R.prop(FORM_FIELDS.name), section.fields) });
+
 const createOutputSchema = (sectionsWithfields) => {
-  const filedsWithOrder = [...sectionsWithfields]
-    .sort((a, b) => a.order - b.order)
-    .map((section) => section.fields)
-    .flat()
-    .map((field, index) => ({ ...field, order: index * 10 }));
-  const sectionsWithOrder = sectionsWithfields
-    .map((section, index) => ({ ...section, order: index * 10 }))
-    .map((section) => ({ ...section, fields: section.fields.map((field) => field.name) }));
-  const mappedFields = filedsWithOrder.map(mapField);
+  const filedsWithOrder = R.pipe(
+    R.sort(orderDiff),
+    R.pluck('fields'),
+    R.flatten,
+    mapIndexed(addOrder)
+  )(sectionsWithfields);
+
+  const sectionsWithOrder = mapIndexed(R.pipe(addOrder, getFieldNames))(sectionsWithfields);
+
+  const mappedFields = R.map(mapField, filedsWithOrder);
 
   return { fields: mappedFields, sections: sectionsWithOrder };
 };
