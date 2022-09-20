@@ -3,6 +3,7 @@ import { SelectControlled } from '@/components/fields/Select';
 import { TextFieldControlled } from '@/components/fields/TextField';
 import { CONTROL_TYPES_ITEMS } from '@/constants/controlTypes';
 import { ALL_FIELDS, FORM_FIELDS, TECH_FIELDS } from '@/constants/fields';
+import { SF_SUPPORTED_FIELDS_ITEMS } from '@/constants/sf';
 import useFieldFormData from './hook';
 
 const FieldForm = () => {
@@ -27,6 +28,7 @@ const FieldForm = () => {
           name={FORM_FIELDS.name}
           label="Name:"
           items={notUsedFields}
+          possibleItems={SF_SUPPORTED_FIELDS_ITEMS}
           rules={{
             required: {
               value: true,
