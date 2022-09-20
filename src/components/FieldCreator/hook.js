@@ -27,7 +27,7 @@ const useFieldCreatorData = () => {
     mode: 'onChange',
   });
 
-  const { handleSubmit, reset, watch, setValue } = methods;
+  const { handleSubmit, reset, setValue, watch } = methods;
 
   const showValidation = watch(TECH_FIELDS.showValidation);
 

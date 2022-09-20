@@ -21,7 +21,7 @@ const useSectionCreatorData = () => {
     mode: 'onChange',
   });
 
-  const { reset, handleSubmit, setValue } = methods;
+  const { handleSubmit, reset, setValue } = methods;
 
   const addSection = (section) => {
     setSections((prev) => [...prev, { id: nanoid(), fields: [], ...section }]);

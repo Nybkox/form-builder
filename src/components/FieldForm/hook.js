@@ -10,7 +10,7 @@ const useFieldFormData = () => {
   const usedFields = useRecoilValue(usedFieldsState);
   const sections = useRecoilValue(sectionsState);
 
-  const { watch, setValue } = useFormContext();
+  const { setValue, watch } = useFormContext();
 
   const notUsedFields = useMemo(
     () => SF_SUPPORTED_FIELDS_ITEMS.filter((i) => !usedFields.includes(i.value)),

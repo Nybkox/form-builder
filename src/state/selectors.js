@@ -19,7 +19,7 @@ export const sectionFieldsState = selectorFamily({
 
   set:
     (sectionId) =>
-    ({ set, get }, newValue) => {
+    ({ get, set }, newValue) => {
       const sections = get(sectionsState);
       const result = sections.map((section) => (section.id === sectionId ? { ...section, fields: newValue } : section));
 

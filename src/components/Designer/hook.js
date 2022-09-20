@@ -14,7 +14,7 @@ const useDesignerData = () => {
     (result) => {
       if (!result.destination) return;
 
-      const { source, destination } = result;
+      const { destination, source } = result;
 
       if (source.droppableId === destination.droppableId && source.index === destination.index) return;
 
