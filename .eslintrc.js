@@ -16,8 +16,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'prettier'],
+  plugins: ['react', 'react-hooks', 'prettier', 'sort-destructure-keys'],
   rules: {
+    'sort-destructure-keys/sort-destructure-keys': [2, { caseSensitive: false }],
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
