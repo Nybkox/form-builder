@@ -33,5 +33,6 @@ module.exports = {
     'consistent-return': 'off',
     'no-unused-vars': 'warn',
     'react/button-has-type': 'warn',
+    'no-underscore-dangle': 'off',
   },
 };
