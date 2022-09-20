@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "nanoid": "^4.0.0",
+    "ramda": "^0.28.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-click-away-listener": "^2.2.2",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.10.2",
+    "babel-plugin-ramda": "^2.1.1",
     "customize-cra": "^1.0.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
