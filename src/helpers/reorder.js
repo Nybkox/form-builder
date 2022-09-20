@@ -1,7 +1,3 @@
-export const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
+import R from 'ramda';
 
-  return result;
-};
+export const reorder = R.curry((start, end, list) => R.insert(end, R.nth(start, list), R.remove(start, 1, list)));

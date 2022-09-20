@@ -1,6 +1,6 @@
+import R from 'ramda';
 import { FIELD_DEFAULT_VALUES, TECH_FIELDS } from '@/constants/fields';
 import { editFieldTargetState, fieldsState, isEditingFieldState, sectionsState } from '@/state/atoms';
-import omit from '@/utils/omit';
 import { nanoid } from 'nanoid';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -68,7 +68,7 @@ const useFieldCreatorData = () => {
     if (!isEditingField) return reset();
 
     const field = fieldsRef.current.find((i) => i.id === editTarget);
-    const keys = Object.keys(omit(field, ['order', 'id']));
+    const keys = R.pipe(R.keys, R.without(['order', 'id']))(field);
 
     keys.forEach((i) => setValue(i, field[i]));
     // eslint-disable-next-line react-hooks/exhaustive-deps

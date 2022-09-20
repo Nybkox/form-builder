@@ -1,3 +1,5 @@
-const clearValues = (obj, values) => Object.fromEntries(Object.entries(obj).filter(([, v]) => !values.includes(v)));
+import R from 'ramda';
+
+const clearValues = R.curry((obj, values) => R.reject(R.includes(R.__, values))(obj));
 
 export default clearValues;

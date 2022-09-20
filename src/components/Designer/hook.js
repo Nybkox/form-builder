@@ -1,8 +1,8 @@
+import R from 'ramda';
 import { DROPPABLE_TYPES } from '@/constants/dnd';
 import { reorder } from '@/helpers/reorder';
 import { sectionsState } from '@/state/atoms';
 import { sectionsWithFieldsState } from '@/state/selectors';
-import insert from '@/utils/insert';
 import { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
@@ -20,7 +20,7 @@ const useDesignerData = () => {
 
       // reorder sections
       if (result.type === DROPPABLE_TYPES.ROOT) {
-        setSections((prev) => reorder(prev, source.index, destination.index));
+        setSections((prev) => reorder(source.index, destination.index, prev));
         return;
       }
 
@@ -28,7 +28,7 @@ const useDesignerData = () => {
       if (result.type === DROPPABLE_TYPES.LIST && source.droppableId === destination.droppableId) {
         setSections((prev) => {
           const targetSection = prev.find((section) => section.id === source.droppableId);
-          const newFields = reorder(targetSection.fields, source.index, destination.index);
+          const newFields = reorder(source.index, destination.index, targetSection.fields);
           const newSections = prev.map((section) =>
             section.id === targetSection.id ? { ...section, fields: newFields } : section
           );
@@ -45,7 +45,7 @@ const useDesignerData = () => {
         const destinationSection = prev.find((section) => section.id === destination.droppableId);
 
         const newSourceFields = sourceSection.fields.filter((fieldId) => fieldId !== result.draggableId);
-        const newDestinationFields = insert(destinationSection.fields, result.draggableId, destination.index);
+        const newDestinationFields = R.insert(destination.index, result.draggableId, destinationSection.fields);
 
         const newSections = prev.map((section) => {
           if (section.id === sourceSection.id) return { ...section, fields: newSourceFields };

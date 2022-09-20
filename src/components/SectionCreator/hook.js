@@ -1,6 +1,6 @@
+import R from 'ramda';
 import { SECTION_DEFAULT_VALUES } from '@/constants/fields';
 import { editSectionTargetState, isEditingSectionState, sectionsState } from '@/state/atoms';
-import omit from '@/utils/omit';
 import { nanoid } from 'nanoid';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -52,7 +52,7 @@ const useSectionCreatorData = () => {
     if (!isEditingSection) return reset();
 
     const section = sectionsRef.current.find((i) => i.id === editTarget);
-    const keys = Object.keys(omit(section, ['order', 'id']));
+    const keys = R.pipe(R.keys, R.without(['order', 'id']))(section);
 
     keys.forEach((i) => setValue(i, section[i]));
     // eslint-disable-next-line react-hooks/exhaustive-deps
